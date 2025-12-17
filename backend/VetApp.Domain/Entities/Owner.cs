@@ -4,11 +4,48 @@ namespace VetApp.Domain.Commons.Entities
 {
     public class Owner : BaseEntity
     {
+        public Owner(){}
+
+        public Owner(string firstName, string lastName, string email, string phoneNumber)
+        {
+            FirstName = Guard.NotNullOrWhiteSpace(firstName, nameof(firstName));
+            LastName = Guard.NotNullOrWhiteSpace(lastName, nameof(lastName));
+            Email = Guard.NotNullOrWhiteSpace(email, nameof(email));
+            PhoneNumber = Guard.NotNullOrWhiteSpace(phoneNumber, nameof(phoneNumber));
+        }
+
         public string FirstName {get; private set;}
         public string LastName {get; private set;}
         public string Email {get; private set;}
-        public string TelephoneNumber {get; private set;}
-        public List<Animal> Animals {get; private set;} = new List<Animal>();
+        public string PhoneNumber {get; private set;}
+        private readonly List<Animal> _animals = new List<Animal>();
+        public IReadOnlyCollection<Animal> Animals => _animals.AsReadOnly();
 
+        public void SetFirstName(string firstName)
+        {
+            FirstName = Guard.NotNullOrWhiteSpace(firstName, "First name");
+        }
+        public void SetLastName(string lastName)
+        {
+            LastName = Guard.NotNullOrWhiteSpace(lastName, "Last name");
+        }
+        public void SetEmail(string email)
+        {
+            Email = Guard.NotNullOrWhiteSpace(email, "E-mail");
+        }
+        public void SetTelephoneNumber(string phoneNumber)
+        {
+            PhoneNumber = Guard.NotNullOrWhiteSpace(phoneNumber, "Telephone number");
+        }
+        public void AddAnimal(Animal animal)
+        {
+            if (animal is null)
+                throw new ArgumentNullException(nameof(animal));
+
+            if (_animals.Any(x => x.Id == animal.Id))
+                throw new ArgumentException("This animal is already assigned to this owner!", nameof(animal));
+
+            _animals.Add(animal);
+        }
     }
 }
