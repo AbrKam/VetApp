@@ -7,14 +7,14 @@ namespace VetApp.Domain.Entities
 {
     public class Animal: BaseEntity
     {
-        public Animal(){}
+        private Animal(){}
         public Animal(Owner owner, string name, DateOnly birthDate, AnimalSpecies species, string breed, AnimalGender gender)
         {
-            Owner = owner ?? throw new ArgumentNullException(nameof(owner));
-            Name = name;
+            Owner = Guard.NotNull(owner, nameof(owner));
+            Name = Guard.NotNullOrWhiteSpace(name, nameof(name));
             BirthDate = birthDate;
             Species = species;
-            Breed = breed;
+            Breed = Guard.NotNullOrWhiteSpace(breed, nameof(breed));
             Gender = gender;
         }
 
@@ -23,16 +23,35 @@ namespace VetApp.Domain.Entities
         public AnimalSpecies Species {get; private set;}
         public string Breed {get; private set;}
         public AnimalGender Gender {get; private set;}
-        public List<Appointment> LastAppointments {get; private set;} = new List<Appointment>();
         public Owner Owner {get; private set;}
 
+        private readonly List<Appointment> _appointments = new List<Appointment>();
+        public IReadOnlyCollection<Appointment> Appointments => _appointments.AsReadOnly();
+
         public void SetName(string name) 
-            => Name = name;
+            => Name = Guard.NotNullOrWhiteSpace(name, nameof(name));
         public void SetBirthDate(DateOnly date)
-            => BirthDate = date;
+        {
+            if (date > DateOnly.FromDateTime(DateTime.UtcNow))
+            {
+                throw new ArgumentException("Birth date cannot be in the future!");
+            }
+            BirthDate = date;
+        }
         public void SetBreed(string breed)
-            => Breed = breed;
+            => Breed = Guard.NotNullOrWhiteSpace(breed, nameof(breed));
         public void SetGender(AnimalGender gender)
             => Gender = gender;
+
+        public void AddAppointment(Appointment appointment)
+        {
+            if (appointment is null)
+                throw new ArgumentNullException(nameof(appointment));
+
+            if (_appointments.Any(x => x.Id == appointment.Id))
+                throw new ArgumentException("This appointment is already assigned to this animal!", nameof(appointment));
+
+            _appointments.Add(appointment);
+        }
     }
 }

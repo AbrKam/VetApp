@@ -4,7 +4,7 @@ namespace VetApp.Domain.Commons.Entities
 {
     public class Owner : BaseEntity
     {
-        public Owner(){}
+        private Owner(){}
 
         public Owner(string firstName, string lastName, string email, string phoneNumber)
         {
@@ -22,21 +22,14 @@ namespace VetApp.Domain.Commons.Entities
         public IReadOnlyCollection<Animal> Animals => _animals.AsReadOnly();
 
         public void SetFirstName(string firstName)
-        {
-            FirstName = Guard.NotNullOrWhiteSpace(firstName, "First name");
-        }
+            => FirstName = Guard.NotNullOrWhiteSpace(firstName, nameof(firstName));
         public void SetLastName(string lastName)
-        {
-            LastName = Guard.NotNullOrWhiteSpace(lastName, "Last name");
-        }
+            => LastName = Guard.NotNullOrWhiteSpace(lastName, nameof(lastName));
         public void SetEmail(string email)
-        {
-            Email = Guard.NotNullOrWhiteSpace(email, "E-mail");
-        }
+            => Email = Guard.NotNullOrWhiteSpace(email, nameof(email));
         public void SetTelephoneNumber(string phoneNumber)
-        {
-            PhoneNumber = Guard.NotNullOrWhiteSpace(phoneNumber, "Telephone number");
-        }
+            => PhoneNumber = Guard.NotNullOrWhiteSpace(phoneNumber, nameof(phoneNumber));
+
         public void AddAnimal(Animal animal)
         {
             if (animal is null)

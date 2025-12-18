@@ -1,20 +1,24 @@
+using VetApp.Domain.Commons.Enums;
 using VetApp.Domain.Entities;
 
 namespace VetApp.Domain.Commons.Entities
 {
     public class Appointment : BaseEntity
     {
-        public Appointment(){}
+        private Appointment(){}
 
         public Appointment(Animal animal, Veterinarian veterinarian, DateTime startAt, 
-            DateTime endAt, AppointmentPurpose appointmentPurpose)
+            DateTime endAt, AppointmentPurpose appointmentPurpose, AppointmentStatus appointmentStatus)
         {
-            Animal = animal;
-            Veterinarian = veterinarian;
-            AppointmentPurpose = appointmentPurpose;
+            Guard.ValidateStartAndEnd(startAt, endAt);
+
+            Animal = Guard.NotNull(animal, nameof(animal));
+            Veterinarian = Guard.NotNull(veterinarian, nameof(veterinarian));
+            
             StartAt = startAt;
             EndAt = endAt;
             AppointmentPurpose = appointmentPurpose;
+            AppointmentStatus = appointmentStatus;
         }
 
         public Animal Animal {get; private set;}
@@ -22,24 +26,20 @@ namespace VetApp.Domain.Commons.Entities
         public DateTime StartAt {get; private set;}
         public DateTime EndAt {get; private set;}
         public AppointmentPurpose AppointmentPurpose {get; private set;}
-        public string AppointmentSummary {get; private set;}
+        public AppointmentStatus AppointmentStatus {get; private set;}
+        public string AppointmentSummary {get; private set;} = "";
 
-        public void SetAnimal(Animal animal) 
-            => Animal = animal;
-        public void SetVeterinarian(Veterinarian veterinarian)
-            => Veterinarian = veterinarian;
-        public void SetAppointmentStartAtAndEndAt(DateTime startAt, DateTime endAt)
+        public void Reschedule(DateTime startAt, DateTime endAt)
         {
-            if (startAt >= endAt)
-            {
-                throw new ArgumentException("Appointment cannot end before it starts!");
-            }
+            Guard.ValidateStartAndEnd(startAt, endAt);
             StartAt = startAt;
             EndAt = endAt;
         }
         public void SetAppointmentPurpose(AppointmentPurpose appointmentPurpose)
             => AppointmentPurpose = appointmentPurpose;
         public void SetAppointmentSummary(string appointmentSummary)
-            => AppointmentSummary = appointmentSummary;
+            => AppointmentSummary = Guard.NotNull(appointmentSummary, nameof(appointmentSummary));
+        public void SetAppointmentStatus(AppointmentStatus appointmentStatus)
+            => AppointmentStatus = appointmentStatus;
     }
 }
