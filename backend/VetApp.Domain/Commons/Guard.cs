@@ -4,19 +4,13 @@ namespace VetApp.Domain.Commons
     {
         public static string NotNullOrWhiteSpace(string value, string paramName)
         {
-            if (string.IsNullOrWhiteSpace(value))
-                throw new ArgumentException($"{paramName} cannot be empty!");
-
+            ArgumentException.ThrowIfNullOrWhiteSpace(value, paramName);
             return value.Trim();
         }
 
         public static T NotNull<T>(T value, string paramName) where T : class
         {
-            if (value is null)
-            {
-                throw new ArgumentNullException(paramName);
-            }
-
+            ArgumentNullException.ThrowIfNull(value, paramName);
             return value;
         }
 
