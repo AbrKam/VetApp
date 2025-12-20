@@ -7,13 +7,11 @@ namespace VetApp.Domain.Commons
             ArgumentException.ThrowIfNullOrWhiteSpace(value, paramName);
             return value.Trim();
         }
-
         public static T NotNull<T>(T value, string paramName) where T : class
         {
             ArgumentNullException.ThrowIfNull(value, paramName);
             return value;
         }
-
         public static void ValidateStartAndEnd(DateTime startAt, DateTime endAt)
         {
             if (startAt >= endAt)

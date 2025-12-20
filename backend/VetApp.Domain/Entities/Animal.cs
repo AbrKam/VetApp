@@ -24,7 +24,6 @@ namespace VetApp.Domain.Entities
         public string Breed {get; private set;}
         public AnimalGender Gender {get; private set;}
         public Owner Owner {get; private set;}
-
         private readonly List<Appointment> _appointments = new List<Appointment>();
         public IReadOnlyCollection<Appointment> Appointments => _appointments.AsReadOnly();
 
@@ -42,11 +41,9 @@ namespace VetApp.Domain.Entities
             => Breed = Guard.NotNullOrWhiteSpace(breed, nameof(breed));
         public void SetGender(AnimalGender gender)
             => Gender = gender;
-
         public void AddAppointment(Appointment appointment)
         {
-            if (appointment is null)
-                throw new ArgumentNullException(nameof(appointment));
+            ArgumentNullException.ThrowIfNull(appointment, nameof(appointment));
 
             if (_appointments.Any(x => x.Id == appointment.Id))
                 throw new ArgumentException("This appointment is already assigned to this animal!", nameof(appointment));
