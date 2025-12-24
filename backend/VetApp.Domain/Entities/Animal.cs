@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using VetApp.Domain.Commons;
 using VetApp.Domain.Commons.Entities;
 using VetApp.Domain.Commons.Enums;

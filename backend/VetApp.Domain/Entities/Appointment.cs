@@ -6,7 +6,6 @@ namespace VetApp.Domain.Commons.Entities
     public class Appointment : BaseEntity
     {
         private Appointment(){}
-
         public Appointment(Animal animal, Veterinarian veterinarian, DateTime startAt, 
             DateTime endAt, AppointmentPurpose appointmentPurpose, AppointmentStatus appointmentStatus)
         {

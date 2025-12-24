@@ -1,8 +1,3 @@
-using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using VetApp.Domain.Commons.Enums;
-
 namespace VetApp.Domain.Commons.Entities
 {
     public class Veterinarian : BaseEntity

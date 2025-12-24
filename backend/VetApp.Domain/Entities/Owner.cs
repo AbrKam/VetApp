@@ -5,7 +5,6 @@ namespace VetApp.Domain.Commons.Entities
     public class Owner : BaseEntity
     {
         private Owner(){}
-
         public Owner(string firstName, string lastName, string email, string phoneNumber)
         {
             FirstName = Guard.NotNullOrWhiteSpace(firstName, nameof(firstName));
@@ -29,7 +28,6 @@ namespace VetApp.Domain.Commons.Entities
             => Email = Guard.NotNullOrWhiteSpace(email, nameof(email));
         public void SetTelephoneNumber(string phoneNumber)
             => PhoneNumber = Guard.NotNullOrWhiteSpace(phoneNumber, nameof(phoneNumber));
-
         public void AddAnimal(Animal animal)
         {
             if (animal is null)
