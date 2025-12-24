@@ -1,7 +1,7 @@
+using VetApp.Domain.Commons;
 using VetApp.Domain.Commons.Enums;
-using VetApp.Domain.Entities;
 
-namespace VetApp.Domain.Commons.Entities
+namespace VetApp.Domain.Entities
 {
     public class Appointment : BaseEntity
     {

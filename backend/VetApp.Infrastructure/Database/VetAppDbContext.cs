@@ -1,6 +1,7 @@
-using System.Dynamic;
+using Microsoft.EntityFrameworkCore;
+using VetApp.Domain.Entities;
 
-namespace VetApp.Infrastructure
+namespace VetApp.Infrastructure.Database
 {
     public class VetAppDbContext : DbContext
     {

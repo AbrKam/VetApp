@@ -1,6 +1,6 @@
-using VetApp.Domain.Entities;
+using VetApp.Domain.Commons;
 
-namespace VetApp.Domain.Commons.Entities
+namespace VetApp.Domain.Entities
 {
     public class Owner : BaseEntity
     {

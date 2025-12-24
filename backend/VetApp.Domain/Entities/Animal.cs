@@ -1,5 +1,4 @@
 using VetApp.Domain.Commons;
-using VetApp.Domain.Commons.Entities;
 using VetApp.Domain.Commons.Enums;
 
 namespace VetApp.Domain.Entities

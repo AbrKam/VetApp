@@ -1,4 +1,6 @@
-namespace VetApp.Domain.Commons.Entities
+using VetApp.Domain.Commons;
+
+namespace VetApp.Domain.Entities
 {
     public class Veterinarian : BaseEntity
     {
