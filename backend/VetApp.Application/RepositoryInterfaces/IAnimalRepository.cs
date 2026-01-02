@@ -4,6 +4,6 @@ namespace VetApp.Application.RepositoryInterfaces
 {
     public interface IAnimalRepository : IGenericRepository<Animal>
     {
-        Task<Animal> GetByOwnerIdAsync(long id);
+        Task<List<Animal>> GetByOwnerIdAsync(long id);
     }
 }
