@@ -20,9 +20,9 @@ namespace VetApp.Infrastructure.Repositories
             return await _dbSet.FindAsync(id) ?? 
                 throw new InvalidOperationException($"Could not find {typeof(T)} with given id = {id}!");
         }
-        public async Task<List<T>> GetAllAsync()
+        public Task<List<T>> GetAllAsync()
         {
-            return await _dbSet.ToListAsync();
+            return _dbSet.ToListAsync();
         }
         public async Task AddAsync(T entity) 
         {
