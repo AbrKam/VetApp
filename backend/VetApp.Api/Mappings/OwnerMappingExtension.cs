@@ -1,0 +1,38 @@
+using VetApp.Api.Contracts.Owner;
+using VetApp.Domain.Entities;
+
+namespace VetApp.Api.Mappings
+{
+    public static class OwnerMappingExtension
+    {
+        public static OwnerResponse ToResponse(Owner owner)
+        {
+            return new OwnerResponse(
+                owner.Id,
+                owner.FirstName, 
+                owner.LastName, 
+                owner.Email, 
+                owner.PhoneNumber,
+                owner.Animals.Select(x => x.Id).ToList()
+            );
+        }
+
+        public static Owner CreateOwner(CreateOwnerRequest request)
+        {
+            return new Owner(
+                request.FirstName, 
+                request.LastName, 
+                request.Email, 
+                request.PhoneNumber
+            );
+        }
+
+        public static void UpdateOwner(Owner owner, UpdateOwnerRequest request)
+        {
+            if (request.FirstName != null) owner.SetFirstName(request.FirstName);
+            if (request.LastName != null) owner.SetLastName(request.LastName);
+            if (request.Email != null) owner.SetEmail(request.Email);
+            if (request.PhoneNumber !=null) owner.SetPhoneNumber(request.PhoneNumber);
+        }
+    }
+}

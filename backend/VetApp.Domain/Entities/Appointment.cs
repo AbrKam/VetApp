@@ -34,6 +34,8 @@ namespace VetApp.Domain.Entities
             StartAt = startAt;
             EndAt = endAt;
         }
+        public void SetVeterinarian(Veterinarian veterinarian)
+            => Veterinarian = Guard.NotNull(veterinarian, nameof(veterinarian));
         public void SetAppointmentPurpose(AppointmentPurpose appointmentPurpose)
             => AppointmentPurpose = appointmentPurpose;
         public void SetAppointmentSummary(string appointmentSummary)

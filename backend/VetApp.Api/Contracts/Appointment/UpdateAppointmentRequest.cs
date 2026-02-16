@@ -3,11 +3,9 @@ using VetApp.Domain.Commons.Enums;
 namespace VetApp.Api.Contracts.Appointment
 {
     public sealed record UpdateAppointmentRequest(
-        long AnimalId, 
-        long VeterinarianId, 
-        DateTime StartAt, 
-        DateTime EndAt, 
-        AppointmentPurpose AppointmentPurpose, 
-        AppointmentStatus AppointmentStatus
+        DateTime? StartAt, 
+        DateTime? EndAt, 
+        AppointmentPurpose? AppointmentPurpose, 
+        AppointmentStatus? AppointmentStatus
     );
 }
