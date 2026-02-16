@@ -26,7 +26,7 @@ namespace VetApp.Domain.Entities
             => LastName = Guard.NotNullOrWhiteSpace(lastName, nameof(lastName));
         public void SetEmail(string email)
             => Email = Guard.NotNullOrWhiteSpace(email, nameof(email));
-        public void SetTelephoneNumber(string phoneNumber)
+        public void SetPhoneNumber(string phoneNumber)
             => PhoneNumber = Guard.NotNullOrWhiteSpace(phoneNumber, nameof(phoneNumber));
         public void AddAnimal(Animal animal)
         {

@@ -5,6 +5,7 @@ namespace VetApp.Api.Contracts.Owner
         string FirstName, 
         string LastName, 
         string Email, 
-        string PhoneNumber
+        string PhoneNumber,
+        IReadOnlyList<long> AnimalIds
     );
 }

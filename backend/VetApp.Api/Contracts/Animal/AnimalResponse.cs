@@ -2,12 +2,12 @@ using VetApp.Domain.Commons.Enums;
 
 namespace VetApp.Api.Contracts.Animal
 {
-    public sealed record AnimalReponse(
+    public sealed record AnimalResponse(
         long Id,
-        Guid OwnerId,
+        long OwnerId,
         string Name,
         AnimalSpecies Species,
         AnimalGender Gender,
         DateOnly? BirthDate 
-    )
+    );
 }

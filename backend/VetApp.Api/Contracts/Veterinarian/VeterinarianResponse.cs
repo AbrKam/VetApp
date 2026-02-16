@@ -5,6 +5,7 @@ namespace VetApp.Api.Contracts.Veterinarian
         string FirstName, 
         string LastName, 
         string Email, 
-        string PhoneNumber
+        string PhoneNumber,
+        IReadOnlyList<long> AppointmentIds
     );      
 }
