@@ -5,7 +5,7 @@ namespace VetApp.Api.Contracts.Animal
     public sealed record AnimalResponse(
         long Id,
         long OwnerId,
-        string Name,
+        string? Name,
         AnimalSpecies Species,
         AnimalGender Gender,
         DateOnly? BirthDate 

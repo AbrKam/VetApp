@@ -6,26 +6,20 @@ namespace VetApp.Api.Mappings
     public static class OwnerMappingExtension
     {
         public static OwnerResponse ToResponse(Owner owner)
-        {
-            return new OwnerResponse(
+        => new OwnerResponse(
                 owner.Id,
                 owner.FirstName, 
                 owner.LastName, 
                 owner.Email, 
                 owner.PhoneNumber,
-                owner.Animals.Select(x => x.Id).ToList()
-            );
-        }
+                owner.Animals.Select(x => x.Id).ToList());
 
         public static Owner CreateOwner(CreateOwnerRequest request)
-        {
-            return new Owner(
+            => new Owner(
                 request.FirstName, 
                 request.LastName, 
                 request.Email, 
-                request.PhoneNumber
-            );
-        }
+                request.PhoneNumber);
 
         public static void UpdateOwner(Owner owner, UpdateOwnerRequest request)
         {

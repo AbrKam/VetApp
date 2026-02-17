@@ -6,16 +6,20 @@ namespace VetApp.Api.Mappings
     public static class VeterinarianMappingExtension
     {
         public static VeterinarianResponse ToReponse(Veterinarian veterinarian)
-        {
-            return new VeterinarianResponse(
+            => new VeterinarianResponse(
                 veterinarian.Id,
                 veterinarian.FirstName, 
                 veterinarian.LastName, 
                 veterinarian.Email, 
                 veterinarian.PhoneNumber,
-                veterinarian.Appointments.Select(x => x.Id).ToList()
-            );
-        }
+                veterinarian.Appointments.Select(x => x.Id).ToList());
+
+        public static Veterinarian CreateVeterinarian(CreateVeterinarianRequest request)
+        => new Veterinarian(
+                request.FirstName, 
+                request.LastName, 
+                request.Email, 
+                request.PhoneNumber);
 
         public static void UpdateVeterinarian(Veterinarian veterinarian, UpdateVeterinarianRequest request)
         {

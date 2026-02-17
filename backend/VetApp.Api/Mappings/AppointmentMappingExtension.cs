@@ -6,17 +6,21 @@ namespace VetApp.Api.Mappings
     public static class AppointmentMappingExtension
     {
         public static AppointmentResponse ToResponse(Appointment appointment)
-        {
-            return new AppointmentResponse(
-                appointment.Animal.Id, 
-                appointment.Veterinarian.Id, 
+            => new AppointmentResponse(
+                appointment.AnimalId, 
+                appointment.VeterinarianId, 
                 appointment.StartAt, 
                 appointment.EndAt, 
                 appointment.AppointmentPurpose, 
-                appointment.AppointmentStatus
-                );
-        }
-
+                appointment.AppointmentStatus);
+        public static Appointment CreateAppointment(CreateAppointmentRequest request)
+            => new Appointment(
+                request.AnimalId,
+                request.VeterinarianId,
+                request.StartAt,
+                request.EndAt,
+                request.AppointmentPurpose,
+                request.AppointmentStatus);
         public static void UpdateAppointment(Appointment appointment, UpdateAppointmentRequest request)
         {
             appointment.Reschedule(request.StartAt, request.EndAt);
