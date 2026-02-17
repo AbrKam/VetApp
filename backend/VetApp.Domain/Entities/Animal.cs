@@ -6,9 +6,9 @@ namespace VetApp.Domain.Entities
     public class Animal: BaseEntity
     {
         private Animal(){}
-        public Animal(Owner owner, string name, DateOnly birthDate, AnimalSpecies species, string breed, AnimalGender gender)
+        public Animal(long ownerId, string name, DateOnly birthDate, AnimalSpecies species, string breed, AnimalGender gender)
         {
-            Owner = Guard.NotNull(owner, nameof(owner));
+            OwnerId = ownerId;
             Name = Guard.NotNullOrWhiteSpace(name, nameof(name));
             BirthDate = birthDate;
             Species = species;
@@ -21,6 +21,7 @@ namespace VetApp.Domain.Entities
         public AnimalSpecies Species {get; private set;}
         public string Breed {get; private set;}
         public AnimalGender Gender {get; private set;}
+        public long OwnerId {get; private set;}
         public Owner Owner {get; private set;}
         private readonly List<Appointment> _appointments = new List<Appointment>();
         public IReadOnlyCollection<Appointment> Appointments => _appointments.AsReadOnly();
