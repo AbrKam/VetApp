@@ -5,7 +5,7 @@ namespace VetApp.Api.Mappings
 {
     public static class OwnerMappingExtension
     {
-        public static OwnerResponse ToResponse(Owner owner)
+        public static OwnerResponse ToResponse(this Owner owner)
         => new OwnerResponse(
                 owner.Id,
                 owner.FirstName, 
@@ -14,14 +14,14 @@ namespace VetApp.Api.Mappings
                 owner.PhoneNumber,
                 owner.Animals.Select(x => x.Id).ToList());
 
-        public static Owner CreateOwner(CreateOwnerRequest request)
+        public static Owner CreateOwner(this CreateOwnerRequest request)
             => new Owner(
                 request.FirstName, 
                 request.LastName, 
                 request.Email, 
                 request.PhoneNumber);
 
-        public static void UpdateOwner(Owner owner, UpdateOwnerRequest request)
+        public static void UpdateOwner(this Owner owner, UpdateOwnerRequest request)
         {
             if (request.FirstName != null) owner.SetFirstName(request.FirstName);
             if (request.LastName != null) owner.SetLastName(request.LastName);

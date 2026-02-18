@@ -11,11 +11,8 @@ namespace VetApp.Domain.Entities
         {
             Guard.ValidateStartAndEnd(startAt, endAt);
 
-            // Animal = Guard.NotNull(animal, nameof(animal));
-            // Veterinarian = Guard.NotNull(veterinarian, nameof(veterinarian));
             AnimalId = animalId;
             VeterinarianId = veterinarianId;
-
             StartAt = startAt;
             EndAt = endAt;
             AppointmentPurpose = appointmentPurpose;

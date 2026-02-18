@@ -5,7 +5,7 @@ namespace VetApp.Api.Mappings
 {
     public static class AppointmentMappingExtension
     {
-        public static AppointmentResponse ToResponse(Appointment appointment)
+        public static AppointmentResponse ToResponse(this Appointment appointment)
             => new AppointmentResponse(
                 appointment.AnimalId, 
                 appointment.VeterinarianId, 
@@ -13,7 +13,7 @@ namespace VetApp.Api.Mappings
                 appointment.EndAt, 
                 appointment.AppointmentPurpose, 
                 appointment.AppointmentStatus);
-        public static Appointment CreateAppointment(CreateAppointmentRequest request)
+        public static Appointment CreateAppointment(this CreateAppointmentRequest request)
             => new Appointment(
                 request.AnimalId,
                 request.VeterinarianId,
@@ -21,7 +21,7 @@ namespace VetApp.Api.Mappings
                 request.EndAt,
                 request.AppointmentPurpose,
                 request.AppointmentStatus);
-        public static void UpdateAppointment(Appointment appointment, UpdateAppointmentRequest request)
+        public static void UpdateAppointment(this Appointment appointment, UpdateAppointmentRequest request)
         {
             appointment.Reschedule(request.StartAt, request.EndAt);
             appointment.SetAppointmentPurpose(request.AppointmentPurpose); 

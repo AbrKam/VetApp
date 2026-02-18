@@ -5,7 +5,7 @@ namespace VetApp.Api.Mappings
 {
     public static class AnimalMappingExtension
     {
-        public static AnimalResponse ToResponse(Animal animal)
+        public static AnimalResponse ToResponse(this Animal animal)
             => new AnimalResponse(
                 animal.Id,
                 animal.OwnerId,
@@ -13,7 +13,7 @@ namespace VetApp.Api.Mappings
                 animal.Species,
                 animal.Gender,
                 animal.BirthDate);
-        public static Animal CreateAnimal(CreateAnimalRequest request)
+        public static Animal CreateAnimal(this CreateAnimalRequest request)
             => new Animal(
                 request.OwnerId,
                 request.Name,
@@ -21,7 +21,7 @@ namespace VetApp.Api.Mappings
                 request.Species,
                 request.Breed,
                 request.Gender);
-        public static void UpdateAnimal(Animal animal, UpdateAnimalRequest request)
+        public static void UpdateAnimal(this Animal animal, UpdateAnimalRequest request)
         {
             if (request.Name != null) animal.SetName(request.Name);
         }
