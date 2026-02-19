@@ -17,7 +17,7 @@ namespace VetApp.Infrastructure.Database
                 "takezo345@example.pl", 
                 "543564654");
             var animal = new Animal(
-                owner, 
+                owner.Id, 
                 "Louis", 
                 new DateOnly(2020, 2, 27), 
                 Domain.Commons.Enums.AnimalSpecies.Dog, 
@@ -32,8 +32,8 @@ namespace VetApp.Infrastructure.Database
             var startAt = new DateOnly(2026, 2, 22).ToDateTime(new TimeOnly(14, 45));
             var endAt   = new DateOnly(2026, 2, 22).ToDateTime(new TimeOnly(15, 00));
             var appointment = new Appointment(
-                animal, 
-                veterinarian, 
+                animal.Id, 
+                veterinarian.Id,
                 startAt,
                 endAt,
                 Domain.Commons.Enums.AppointmentPurpose.HealthCheck,
