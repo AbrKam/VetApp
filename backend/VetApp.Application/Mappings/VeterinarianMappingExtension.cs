@@ -1,7 +1,7 @@
-using VetApp.Api.Contracts.Veterinarian;
+using VetApp.Application.Contracts.Veterinarian;
 using VetApp.Domain.Entities;
 
-namespace VetApp.Api.Mappings
+namespace VetApp.Application.Mappings
 {
     public static class VeterinarianMappingExtension
     {

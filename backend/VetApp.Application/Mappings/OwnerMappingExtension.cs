@@ -1,7 +1,7 @@
-using VetApp.Api.Contracts.Owner;
+using VetApp.Application.Contracts.Owner;
 using VetApp.Domain.Entities;
 
-namespace VetApp.Api.Mappings
+namespace VetApp.Application.Mappings
 {
     public static class OwnerMappingExtension
     {

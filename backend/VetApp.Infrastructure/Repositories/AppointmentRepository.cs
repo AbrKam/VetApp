@@ -1,4 +1,4 @@
-using VetApp.Application.RepositoryInterfaces;
+using VetApp.Application.Interfaces.RepositoryInterfaces;
 using VetApp.Domain.Entities;
 using VetApp.Infrastructure.Database;
 

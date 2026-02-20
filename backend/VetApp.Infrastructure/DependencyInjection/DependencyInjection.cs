@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using VetApp.Application.RepositoryInterfaces;
+using VetApp.Application.Interfaces.RepositoryInterfaces;
 using VetApp.Infrastructure.Database;
 using VetApp.Infrastructure.Repositories;
 

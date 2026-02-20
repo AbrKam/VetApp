@@ -1,6 +1,6 @@
 using VetApp.Domain.Commons.Enums;
 
-namespace VetApp.Api.Contracts.Appointment
+namespace VetApp.Application.Contracts.Appointment
 {
     public sealed record UpdateAppointmentRequest(
         DateTime StartAt, 

@@ -1,6 +1,6 @@
 using VetApp.Domain.Commons.Enums;
 
-namespace VetApp.Api.Contracts.Animal
+namespace VetApp.Application.Contracts.Animal
 {
     public sealed record AnimalResponse(
         long Id,

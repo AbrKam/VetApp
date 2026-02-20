@@ -1,4 +1,4 @@
-namespace VetApp.Api.Contracts.Owner
+namespace VetApp.Application.Contracts.Owner
 {
     public sealed record UpdateOwnerRequest(
         string? FirstName, 

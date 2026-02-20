@@ -1,4 +1,4 @@
-namespace VetApp.Api.Contracts.Veterinarian
+namespace VetApp.Application.Contracts.Veterinarian
 {
     public sealed record CreateVeterinarianRequest(
         string? FirstName, 

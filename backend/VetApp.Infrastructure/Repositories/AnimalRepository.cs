@@ -1,6 +1,6 @@
 using VetApp.Infrastructure.Database;
 using VetApp.Domain.Entities;
-using VetApp.Application.RepositoryInterfaces;
+using VetApp.Application.Interfaces.RepositoryInterfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace VetApp.Infrastructure.Repositories

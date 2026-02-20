@@ -1,7 +1,7 @@
-using VetApp.Api.Contracts.Appointment;
+using VetApp.Application.Contracts.Appointment;
 using VetApp.Domain.Entities;
 
-namespace VetApp.Api.Mappings
+namespace VetApp.Application.Mappings
 {
     public static class AppointmentMappingExtension
     {

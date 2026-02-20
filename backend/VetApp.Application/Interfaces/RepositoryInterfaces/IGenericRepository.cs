@@ -1,4 +1,4 @@
-namespace VetApp.Application.RepositoryInterfaces
+namespace VetApp.Application.Interfaces.RepositoryInterfaces
 {
     public interface IGenericRepository<T> where T : class 
     {
