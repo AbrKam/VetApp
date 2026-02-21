@@ -1,6 +1,7 @@
 using VetApp.Application.Contracts.Owner;
 using VetApp.Application.Interfaces.RepositoryInterfaces;
 using VetApp.Application.Interfaces.ServiceInterfaces;
+using VetApp.Application.Mappings;
 
 namespace VetApp.Application.Services
 {
@@ -12,14 +13,17 @@ namespace VetApp.Application.Services
             _repository = ownerRepository;
         }
 
-        // public Task<OwnerResponse> CreateAsync(CreateOwnerRequest request)
-        // {
-            
-        // } 
+        public async Task<OwnerResponse> CreateAsync(CreateOwnerRequest request)
+        {
+            var owner = request.CreateOwner();
+            await _repository.AddAsync(owner);
+            return owner.ToResponse();
+        } 
 
-        // public Task<IEnumerable<OwnerResponse>> GetAllAsync()
-        // {
-            
-        // }
+        public async Task<IEnumerable<OwnerResponse>> GetAllAsync()
+        {
+            var owners = await _repository.GetAllAsync();
+            return owners.Select(x => x.ToResponse());
+        }
     }
 }
