@@ -19,5 +19,7 @@ namespace VetApp.Infrastructure.Database
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(VetAppDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
         }
+
+        // TODO: Implement ConfigureConventions for datetime conversion to utc 
     }
 }

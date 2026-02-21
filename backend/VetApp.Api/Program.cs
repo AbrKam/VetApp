@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore.Design;
 using VetApp.Infrastructure.DependencyInjection;
 using VetApp.Application.DependencyInjection;
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<VetAppDbContext>(
@@ -11,10 +13,29 @@ builder.Services.AddDbContext<VetAppDbContext>(
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    try
+    {
+        var context = services.GetRequiredService<VetAppDbContext>();
+        await DbInitializer.Initialize(context);
+    }
+    catch(Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "Error occured during initialization of database.");
+    }
+}
+
+app.MapControllers();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

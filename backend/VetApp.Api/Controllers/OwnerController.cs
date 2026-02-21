@@ -22,6 +22,7 @@ namespace VetApp.Api.Controllers
             return Ok(owners);
         }
 
+        [HttpPost]
         public async Task<ActionResult<OwnerResponse>> Create(CreateOwnerRequest request)
         {
             var response = await _service.CreateAsync(request);

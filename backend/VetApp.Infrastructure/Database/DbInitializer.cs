@@ -16,6 +16,10 @@ namespace VetApp.Infrastructure.Database
                 "Miyamoto", 
                 "takezo345@example.pl", 
                 "543564654");
+
+            await context.Owners.AddAsync(owner);
+            await context.SaveChangesAsync();
+
             var animal = new Animal(
                 owner.Id, 
                 "Louis", 
@@ -23,14 +27,21 @@ namespace VetApp.Infrastructure.Database
                 Domain.Commons.Enums.AnimalSpecies.Dog, 
                 "Crossbreed", 
                 Domain.Commons.Enums.AnimalGender.Male);
+            
+            await context.Animals.AddAsync(animal);
+            await context.SaveChangesAsync();
+            
             var veterinarian = new Veterinarian(
                 "Sasaki", 
                 "Kojiro", 
                 "s.kojiro@vetclinic.pl", 
                 "675312453");
 
-            var startAt = new DateOnly(2026, 2, 22).ToDateTime(new TimeOnly(14, 45));
-            var endAt   = new DateOnly(2026, 2, 22).ToDateTime(new TimeOnly(15, 00));
+            await context.Veterinarians.AddAsync(veterinarian);
+            await context.SaveChangesAsync();
+
+            var startAt = DateTime.SpecifyKind(new DateOnly(2026, 2, 22).ToDateTime(new TimeOnly(14, 45)), DateTimeKind.Utc);
+            var endAt   = DateTime.SpecifyKind(new DateOnly(2026, 2, 22).ToDateTime(new TimeOnly(15, 00)), DateTimeKind.Utc);
             var appointment = new Appointment(
                 animal.Id, 
                 veterinarian.Id,
@@ -39,8 +50,7 @@ namespace VetApp.Infrastructure.Database
                 Domain.Commons.Enums.AppointmentPurpose.HealthCheck,
                 Domain.Commons.Enums.AppointmentStatus.Planned);
 
-            context.AddRange(owner, animal, veterinarian, appointment);
-
+            await context.Appointments.AddAsync(appointment);
             await context.SaveChangesAsync();
         }
     }
