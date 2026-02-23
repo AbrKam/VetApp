@@ -13,20 +13,18 @@ namespace VetApp.Application.Mappings
                 owner.Email, 
                 owner.PhoneNumber,
                 owner.Animals.Select(x => x.Id).ToList());
-
         public static Owner CreateOwner(this CreateOwnerRequest request)
             => new Owner(
                 request.FirstName, 
                 request.LastName, 
                 request.Email, 
                 request.PhoneNumber);
-
         public static void UpdateOwner(this Owner owner, UpdateOwnerRequest request)
         {
             if (request.FirstName != null) owner.SetFirstName(request.FirstName);
             if (request.LastName != null) owner.SetLastName(request.LastName);
             if (request.Email != null) owner.SetEmail(request.Email);
-            if (request.PhoneNumber !=null) owner.SetPhoneNumber(request.PhoneNumber);
+            if (request.PhoneNumber != null) owner.SetPhoneNumber(request.PhoneNumber);
         }
     }
 }
